@@ -6,7 +6,8 @@ import HeroScrollDemo from './HeroScrollDemo';
 import { FlipWordsDemo } from './FlipWordsDemo';
 import { TextGenerateEffectDemo } from './TextGenerateEffectDemo';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
-import { toast, Toaster } from 'sonner';
+import { Toaster } from './ui/sonner';
+
 
 
 
@@ -67,6 +68,8 @@ const CalendarDemo = () => {
       <CardFooter className="flex justify-between">
       <Button variant="outline">Cancel</Button>
       <Button>Set Event</Button>
+      
+      <Toaster />
       </CardFooter>
     </Card>
    </div>
