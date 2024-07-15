@@ -6,6 +6,7 @@ import HeroScrollDemo from './HeroScrollDemo';
 import { FlipWordsDemo } from './FlipWordsDemo';
 import { TextGenerateEffectDemo } from './TextGenerateEffectDemo';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { toast, Toaster } from 'sonner';
 
 
 
@@ -14,13 +15,12 @@ const CalendarDemo = () => {
 
   return (
     <>
-    <div className="flex justify-center items-center h-screen">
+     <div className="flex justify-center items-center h-screen">
     <HeroScrollDemo />
       {/* <LampDemo/> */}
       <FlipWordsDemo/>
       {/* <TextGenerateEffectDemo/> */}
     </div>
-
 
     <div className="flex justify-center items-center h-screen">
 
@@ -39,40 +39,34 @@ const CalendarDemo = () => {
     </div>
 
 
-    <Card className="w-[400px] h-[450px] ml-10">
+    <Card className="w-[400px] h-[400px] ml-10">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Update Event</CardTitle>
+        <CardDescription>Add event to get the perfect outfit recommendation</CardDescription>
       </CardHeader>
       <CardContent>
 
       <form>
-            <div className="form-group">
-              <label htmlFor="occasion">Occasion</label>
-              <input type="text" id="occasion" name="occasion" className="form-control" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="theme">Theme (if any)</label>
-              <input type="text" id="theme" name="theme" className="form-control" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="time">Time</label>
-              <input type="time" id="time" name="time" className="form-control" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="type">Type</label>
-              <select id="type" name="type" className="form-control">
-                <option value="">Select...</option>
-                <option value="trip">Trip</option>
-                <option value="vacation">Vacation</option>
-              </select>
-            </div>
-          </form>
+  <div className="form-group">
+    <label htmlFor="occasion" className="text-lg font-bold text-gray-600">Occasion</label>
+    <input type="text" id="occasion" name="occasion" className="form-control ml-2 mb-4 border rounded-md px-3 py-2" placeholder="Enter occasion" />
+  </div>
+  <div className="form-group">
+    <label htmlFor="theme" className="text-lg font-bold text-gray-600">Theme (if any)</label>
+    <input type="text" id="theme" name="theme" className="form-control ml-2 mb-4 border rounded-md px-3 py-2" placeholder="Enter theme if any" />
+  </div>
+  <div className="form-group">
+    <label htmlFor="time" className="text-lg font-bold text-gray-600">Time</label>
+    <input type="time" id="time" name="time" className="form-control ml-2 mb-4 border rounded-md px-3 py-2" placeholder="Select time" />
+  </div>
+ 
+</form>
+
 
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button>Set Event</Button>
       </CardFooter>
     </Card>
    </div>
