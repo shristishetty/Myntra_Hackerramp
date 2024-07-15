@@ -5,7 +5,7 @@ import { ImagesSlider } from "./ui/images-slider";
 
 export function ImagesSliderDemo() {
   const images = [
-    "https://images.pexels.com/photos/6567283/pexels-photo-6567283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",,
+    "https://images.pexels.com/photos/6567283/pexels-photo-6567283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "https://images.pexels.com/photos/5269621/pexels-photo-5269621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "https://images.pexels.com/photos/6765535/pexels-photo-6765535.jpeg?auto=compress&cs=tinysrgb&w=600",
   ];

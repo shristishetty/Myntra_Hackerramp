@@ -8,21 +8,21 @@ const Header = () => {
         <img src="/logo.jpeg" alt="Logo" className="h-18 w-40" />
         <NavLink
           exact  // Add exact prop here
-          to="/women"
-          className={({ isActive }) =>
-            isActive ? "text-pink-400 font-bold" : "text-gray-600 hover:text-gray-900"
-          }
-        >
-          Women
-        </NavLink>
-        <NavLink
-          exact  // Add exact prop here
           to="/men"
           className={({ isActive }) =>
             isActive ? "text-pink-400 font-bold" : "text-gray-600 hover:text-gray-900"
           }
         >
           Men
+        </NavLink>
+        <NavLink
+          exact  // Add exact prop here
+          to="/women"
+          className={({ isActive }) =>
+            isActive ? "text-pink-400 font-bold" : "text-gray-600 hover:text-gray-900"
+          }
+        >
+          Women
         </NavLink>
         <NavLink
           exact  // Add exact prop here
@@ -50,7 +50,7 @@ const Header = () => {
             isActive ? "text-pink-400 font-bold" : "text-gray-600 hover:text-gray-900"
           }
         >
-          Avatar Contest
+          BitMoji Contest
         </NavLink>
       </header>
     </div>
