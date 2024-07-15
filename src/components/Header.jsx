@@ -42,6 +42,16 @@ const Header = () => {
         >
           Calendar
         </NavLink>
+
+        <NavLink
+          exact  // Add exact prop here
+          to="/contest"
+          className={({ isActive }) =>
+            isActive ? "text-pink-400 font-bold" : "text-gray-600 hover:text-gray-900"
+          }
+        >
+          Avatar Contest
+        </NavLink>
       </header>
     </div>
   );

@@ -15,9 +15,6 @@ export function Women() {
   return (
     <>
       <ImagesSliderDemo /> 
-      {/* <div className = "font-bold ml-10 text-xl mt-4">
-        Recommended
-      </div> */}
       <div className="flex overflow-x-scroll space-x-4 m-8" style={{ "-ms-overflow-style": "none", "scrollbar-width": "none", }}>
         {imageUrls.map((image, index) => (
           <CardContainer className="inter-var min-w-[20rem]" key={index}>
