@@ -3,7 +3,7 @@ import ContainerScroll from "./ui/container-scroll-animation";
 
 const HeroScrollDemo = () => {
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div className="flex py-0 flex-col overflow-hidden">
       <ContainerScroll
         titleComponent={
           <>
@@ -17,13 +17,13 @@ const HeroScrollDemo = () => {
         }
       >
         <img
-          src="https://images.pexels.com/photos/18004391/pexels-photo-18004391/free-photo-of-smiling-teenager-in-a-white-dress-at-her-birthday-celebration.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://images.pexels.com/photos/18004391/pexels-photo-18004391/free-photo-of-smiling-teenager-in-a-white-dress-at-her-birthday-celebration.jpeg?auto=compress&cs=tinysrgb&w=450&h=450&dpr=1"
           alt="hero"
           height={360}
-          width={700}
+          width={360}
           className="mx-auto rounded-2xl object-cover h-auto w-auto object-left-top"
           draggable={false}
-          style={{ margin: "10px" }}
+          style={{ }}
         />
       </ContainerScroll>
     </div>
