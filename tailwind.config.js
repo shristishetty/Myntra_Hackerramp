@@ -51,6 +51,8 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        scroll:
+        "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,7 +73,26 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      scroll: {
+        to: {
+          transform: "translate(calc(-50% - 0.5rem))",
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
+}
+
+
+function flattenColorPalette(colors) {
+  let flattenedColors = {};
+  Object.keys(colors).forEach((key) => {
+    const value = colors[key];
+    if (typeof value === 'object' && !Array.isArray(value)) {
+      Object.assign(flattenedColors, flattenColorPalette(value));
+    } else {
+      flattenedColors[key] = value;
+    }
+  });
+  return flattenedColors;
 }
