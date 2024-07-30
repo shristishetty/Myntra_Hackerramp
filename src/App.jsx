@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Header from "./components/Header";
-import { Women } from "./components/Women";
 import { Navigate, Route, Routes } from "react-router-dom";
-import CalendarDemo from "./components/CalendarDemo";
 import { FaBirthdayCake } from "react-icons/fa"; 
+import { Women } from "./components/Women";
+import CalendarDemo from "./components/CalendarDemo";
 import Contest from "./components/Contest";
 // import Contest from "./components/Contest";
 // const Contest = React.lazy(() => import("./components/Contest"));
@@ -24,7 +24,7 @@ const App = () => {
         </div>
       </div>,
       {
-        duration: 8000,
+        duration: 3000,
         position: 'top-right',
       }
     );

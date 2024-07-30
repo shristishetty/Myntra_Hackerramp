@@ -1,0 +1,85 @@
+/* src/Winners.css */
+.winners-container {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .announcement-banner {
+    background-color: #ff9800;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .podium-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  
+  .podium-image {
+    width: 100%;
+    max-width: 500px;
+    padding-top: 200px;
+  }
+  
+  .podium-avatar {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 0;
+    cursor: pointer;
+  }
+  
+  .rank-1 {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 28%; /* Adjust as necessary to align with podium */
+  }
+  
+  .rank-2 {
+    left: 33%;
+    bottom: 20%; /* Adjust as necessary to align with podium */
+  }
+  
+  .rank-3 {
+    left: 53%; /* Adjust to properly align to the right of the podium */
+    bottom: 21%; /* Adjust as necessary to align with podium */
+  }
+  
+  .winner-image {
+    width: 200px;
+    height: 300px;
+    margin-bottom: 10px;
+  }
+  
+  .winner-info-container {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: -70px;
+  }
+  
+  .winner-info {
+    text-align: center;
+  }
+  
+  .winner-name {
+    margin: 10px 0 5px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  
+  
