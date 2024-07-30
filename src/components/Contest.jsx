@@ -17,9 +17,13 @@ const Contest = () => {
   useEffect(() => {
     const closeButton = document.getElementById('close-video-button');
     const videoContainer = document.getElementById('floating-video-container');
-    
+    const videoElement = document.getElementById('floating-video');
+
     const handleCloseButtonClick = () => {
       videoContainer.style.display = 'none';
+      if (videoElement) {
+        videoElement.pause();
+      }
     };
 
     if (closeButton) {

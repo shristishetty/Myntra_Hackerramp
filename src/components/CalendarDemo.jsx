@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Calendar } from "./ui/calendar";
 import {
@@ -17,13 +16,6 @@ import {
 } from "./ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 import {
   Select,
   SelectContent,
@@ -47,6 +39,8 @@ const FormSchema = z.object({
 });
 
 const CalendarDemo = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -61,58 +55,48 @@ const CalendarDemo = () => {
     toast.success("Event details submitted: " + JSON.stringify(data, null, 2));
   };
 
+  const handleDropdownClick = (dropdownName) => {
+    if (activeDropdown === dropdownName) {
+      setActiveDropdown(null);
+    } else {
+      setActiveDropdown(dropdownName);
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <div className="flex gap-0">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-8">
+      <div className="flex gap-0 mb-10">
         <HeroScrollDemo />
         <FlipWordsDemo />
       </div>
 
-      <div className="flex items-start justify-start mt-20 gap-x-32">
-        <Card className="w-full max-w-md mt-8 shadow-lg">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold">Update Event</CardTitle>
-            <CardDescription>
-              Add event details for the perfect outfit recommendation
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-6xl">
+          <div className="flex justify-center items-center">
+            <div className="w-4/5 bg-white shadow-md h-14 rounded-full flex justify-center text-xs">
+              <div
+                className={`w-1/4 flex flex-col text-left ${activeDropdown === 'occasion' ? 'hover:bg-gray-300 hover:text-white' : ''} items-start space-y-1 px-6 rounded-full`}
+                onClick={() => handleDropdownClick('occasion')}
               >
                 <FormField
                   control={form.control}
                   name="occasion"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Occasion</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select an occasion" />
-                          </SelectTrigger>
-                        </FormControl>
+                      <FormLabel className="mr-2 text-black text-sm">Occasion</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="w-full h-8 bg-inherit outline-none text-sm" disabled={activeDropdown !== 'occasion'}>
+                          <SelectValue placeholder="Select an occasion" />
+                        </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            <SelectLabel>Occasions</SelectLabel>
+                            <SelectItem value="birthday">Birthday</SelectItem>
                             <SelectItem value="wedding">Wedding</SelectItem>
-                            <SelectItem value="birthday">
-                              Birthday Party
-                            </SelectItem>
-                            <SelectItem value="business">
-                              Business Meeting
-                            </SelectItem>
-                            <SelectItem value="casual">
-                              Casual Outing
-                            </SelectItem>
-                            <SelectItem value="formal">
-                              Formal Dinner
-                            </SelectItem>
+                            <SelectItem value="diwali">Diwali</SelectItem>
+                            <SelectItem value="rakshabandhan">Rakshabandhan</SelectItem>
+                            <SelectItem value="formal meet up">Formal Meet up</SelectItem>
+                            <SelectItem value="beach vacation">Beach Vacation</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -120,75 +104,85 @@ const CalendarDemo = () => {
                     </FormItem>
                   )}
                 />
+              </div>
 
+              <div
+                className={`w-1/4 flex flex-col text-left ${activeDropdown === 'theme' ? 'hover:bg-gray-300 hover:text-white' : ''} items-start space-y-1 px-6 rounded-full`}
+                onClick={() => handleDropdownClick('theme')}
+              >
                 <FormField
                   control={form.control}
                   name="theme"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Theme (if any)</FormLabel>
+                      <FormLabel className="mr-2 text-black text-sm">Theme</FormLabel>
                       <FormControl>
                         <input
+                          type="text"
+                          placeholder="Enter Theme if any"
+                          className="bg-inherit outline-none text-sm"
                           {...field}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                          placeholder="Enter theme if any"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+              </div>
 
+              <div
+                className={`w-1/4 flex flex-col text-left ${activeDropdown === 'date' ? 'hover:bg-gray-300 hover:text-white' : ''} items-start space-y-1 px-6 rounded-full`}
+                onClick={() => handleDropdownClick('date')}
+              >
                 <FormField
                   control={form.control}
                   name="date"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                      <FormLabel>Date of Occasion</FormLabel>
+                    <FormItem>
+                      <FormLabel className="mr-2 text-black text-sm">Date of occasion</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-[240px] pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}
+                            <button
+                              type="button"
+                              className="bg-inherit outline-none text-sm"
+                              disabled={activeDropdown !== 'date'}
                             >
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                            </Button>
+                              {selectedDate ? format(selectedDate, "PPP") : "Pick a date"}
+                            </button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            initialFocus
-                          />
+                        <PopoverContent className="w-auto p-0">
+                          <div>
+                            <Calendar
+                              mode="single"
+                              selected={selectedDate}
+                              onSelect={(date) => {
+                                setSelectedDate(date);
+                                field.onChange(date);
+                              }}
+                              className="calendar"
+                            />
+                          </div>
                         </PopoverContent>
                       </Popover>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+              </div>
 
-                <Button type="submit">Set Event</Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
+              <div className="w-1/4 flex justify-center items-center bg-orange-500 flex-col text-left px-6 rounded-full">
+                <Button type="submit" className="text-white p-2 rounded-full">
+                  Submit
+                </Button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </Form>
 
-        <img
-          src="https://images.pexels.com/photos/18004391/pexels-photo-18004391/free-photo-of-smiling-teenager-in-a-white-dress-at-her-birthday-celebration.jpeg?auto=compress&cs=tinysrgb&w=450&h=450&dpr=1"
-          alt="img"
-          className="mt-8 rounded-2xl"
-        />
-      </div>
+      <Toaster />
     </div>
   );
 };

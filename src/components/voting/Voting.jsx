@@ -1,8 +1,7 @@
-// src/components/voting/Voting.jsx
+
 import React, { useState } from 'react';
 import './Voting.css';
 
-// Import the images
 import avatar1 from '../../assets/avatars/avatar1.png';
 import avatar2 from '../../assets/avatars/avatar2.png';
 import avatar3 from '../../assets/avatars/avatar3.png';
