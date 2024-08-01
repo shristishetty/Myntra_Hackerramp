@@ -9,71 +9,81 @@ CORS(app, origins=["http://localhost:5173"])
 
 # Load the Excel file into a DataFrame
 df = pd.read_excel('myndata.xlsx')
-# print(df.head())
+print(df.head())
 
-def get_images_by_keywords(df, input_keywords):
-    # Define the keyword mappings
+
+import re
+
+def get_images_by_keywords(df, input_keywords, gender):
     keyword_mappings = {
-        ('business',): 'formal',
-        ('wedding',): 'saree',
-        # ('sport', 'gym', 'marathon'): 'gym',
-        ('birthday',): 'party'  # Corrected to a tuple
+                'women': {
+            ('formal',): ['formal'],
+            ('wedding',): ['lehenga','saree'],
+            ('diwali',): ['ethnic', 'saree','kurti'],
+            ('birthday',): ['bodycon dress','mini dress', 'dress'],
+            ('beach vacation',): ['beach', 'swim']
+        },
+        'men': {
+            ('business',): ['suit', 'blazer'],
+            ('wedding',): ['kurta', 'tuxedo'],
+            ('casual',): ['casual'],
+            ('birthday',): ['casual', 'jumpsuit']  
+        },
+        'others': {
+            ('business',): ['formal', 'blazer'],
+            ('wedding',): ['saree', 'dress', 'suit'],
+            ('casual',): ['casual'],
+            ('birthday',): ['dress', 'jumpsuit']
+        }
     }
 
-    # Normalize input keywords
     input_keywords = set(keyword.lower() for keyword in input_keywords)
-    print(input_keywords)
-    # Initialize a variable to store the matched category
-    matched_category = None
 
-    # Check the input keywords against each set of keywords in the mappings
-    for keyword_set, target_name in keyword_mappings.items():
-        if any(keyword in input_keywords for keyword in keyword_set):
-            matched_category = target_name
-            break
+    matched_categories = []
 
-    if matched_category:
-        # test_pattern='wedding'
-        target_pattern = matched_category
-        # target_pattern = test_pattern
-        filtered_df = df[df['name'].str.contains(target_pattern, case=False, na=False)]
-        print(filtered_df)
-        image_urls = filtered_df['img'].tolist()
+    keyword_patterns = [re.compile(rf'\b{keyword}\b', re.IGNORECASE) for keyword in input_keywords]
 
-    else:
-        image_urls = []
+    gender_mappings = keyword_mappings.get(gender, keyword_mappings[gender])
+    
+    if not re.fullmatch(gender, gender):
+        return {}
 
-    return image_urls
+    for keyword_set, categories in gender_mappings.items():
+        if any(pattern.search(keyword) for keyword in keyword_set for pattern in keyword_patterns):
+            matched_categories.extend(categories)
 
-# @app.route('/get-images', methods=['POST'])
-# def get_images():
-#     data = request.json
-#     occasion = data.get('occasion', [])
-#     if isinstance(occasion, str):
-#         occasion = [keyword.strip().lower() for keyword in occasion.split(',')]
-#     image_urls = get_images_by_keywords(df, occasion)
-#     return jsonify(image_urls)
+    matched_categories = list(set(matched_categories))
+
+    images_info = {}
+
+    if matched_categories:
+        for category in matched_categories:
+            filtered_df = df[df['name'].apply(lambda x: any(re.search(rf'\b{cat}\b', x, re.IGNORECASE) for cat in matched_categories))]
+            for _, row in filtered_df.iterrows():
+                images_info[row['img']] = row['name']
+
+    return images_info
 
 @app.route('/get-images', methods=['POST'])
 def get_images():
     data = request.json
     occasion = data.get('occasion')
+    gender = data.get('gender', 'others')  
 
-    # If 'occasion' is supposed to be a list, ensure it's treated as such
+    if gender not in ['women', 'men', 'others']:
+        return jsonify({"error": "Invalid gender value"}), 400
+
     if isinstance(occasion, str):
         try:
-            # Attempt to load a JSON string
             occasion = json.loads(occasion)
         except json.JSONDecodeError:
-            # If the string is not a JSON string, treat it as a comma-separated list
             occasion = occasion.split(',')
     elif not isinstance(occasion, list):
-        # If it's neither a string nor a list, raise an error or handle accordingly
         return jsonify({"error": "Invalid input format"}), 400
 
-    # Proceed with processing the 'occasion' as a list of keywords
-    image_urls = get_images_by_keywords(df, occasion)
-    return jsonify(image_urls)
+    images_info = get_images_by_keywords(df, occasion, gender)
+    return jsonify(images_info)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
