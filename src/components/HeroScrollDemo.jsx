@@ -9,7 +9,7 @@ const HeroScrollDemo = () => {
           <>
             <h1 className="text-4xl font-semibold text-black dark:text-white">
             Fashion for your schedule <br />
-              <span className="text-4xl md:text-[5rem] font-bold mt-1 leading-none">
+              <span className="text-3xl md:text-[5rem] font-bold mt-1 leading-none">
               Dress for every event
               </span>
             </h1>
