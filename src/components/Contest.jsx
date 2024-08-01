@@ -3,6 +3,7 @@ import CreateAvatar from './Avatar/CreateAvatar';
 import { EmojiSliderDemo } from './EmojiSliderDemo';
 import Voting from './voting/Voting';
 import Winners from './winners/Winners';
+import CreateUserComponent from './Avatar/CreateUserComponent';
 
 const Contest = () => {
   const [showAvatarCreator, setShowAvatarCreator] = useState(false);
@@ -124,6 +125,8 @@ const Contest = () => {
           X
         </button>
       </div>
+
+          <CreateUserComponent />
     </div>
   );
 };
