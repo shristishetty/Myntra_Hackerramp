@@ -58,26 +58,32 @@ const Winners = () => {
 
   return (
     <div className="winners-container">
-      <h2>Previous Contest Winners</h2>
       <div className="announcement-banner">ANNOUNCEMENT</div>
-      <div className="podium-container">
-        <img src={podium} alt="Podium" className="podium-image" />
-        {winners.map((winner, index) => (
-          <div
-            key={index}
-            className={`podium-avatar rank-${winner.rank}`}
-            onClick={() => handleAvatarClick(winner)}
-          >
-            <img src={winner.image} alt={winner.name} className="winner-image" />
+      <div className="content">
+        <div className="left-section">
+          <h2>The Previous Contest Winners</h2>
+        </div>
+        <div className="right-section">
+          <div className="podium-container">
+            <img src={podium} alt="Podium" className="podium-image" />
+            {winners.map((winner, index) => (
+              <div
+                key={index}
+                className={`podium-avatar rank-${winner.rank}`}
+                onClick={() => handleAvatarClick(winner)}
+              >
+                <img src={winner.image} alt={winner.name} className="winner-image" />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="winner-info-container">
-        {winners.map((winner, index) => (
-          <div key={index} className="winner-info">
-            <h3 className="winner-name">{winner.name}</h3>
+          <div className="winner-info-container">
+            {winners.map((winner, index) => (
+              <div key={index} className="winner-info">
+                <h3 className="winner-name">{winner.name}</h3>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
       {selectedWinner && (
         <Popup recommendations={recommendations} onClose={handleClosePopup} />
