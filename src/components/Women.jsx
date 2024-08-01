@@ -25,7 +25,7 @@ export function Women() {
                 translateZ="50"
                 className="text-xl font-bold text-neutral-600 dark:text-white"
               >
-                View your favourtie design
+                View your favourite design
               </CardItem>
               <CardItem
                 as="p"

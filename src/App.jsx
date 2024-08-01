@@ -6,6 +6,7 @@ import { FaBirthdayCake } from "react-icons/fa";
 import { Women } from "./components/Women";
 import CalendarDemo from "./components/CalendarDemo";
 import Contest from "./components/Contest";
+import {Men} from "./components/Men";
 // import Contest from "./components/Contest";
 // const Contest = React.lazy(() => import("./components/Contest"));
 
@@ -36,6 +37,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Navigate to="/women" />} />
+          <Route path="/men" element={<Men />} />
           <Route path="/women" element={<Women />} />
           <Route path="/calendar" element={<CalendarDemo />} />
           <Route path="/contest" element={<Contest />} />
