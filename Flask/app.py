@@ -24,16 +24,18 @@ def get_images_by_keywords(df, input_keywords, gender):
             ('beach vacation',): ['beach', 'swim']
         },
         'men': {
-            ('business',): ['suit', 'blazer'],
-            ('wedding',): ['kurta', 'tuxedo'],
-            ('casual',): ['casual'],
-            ('birthday',): ['casual', 'jumpsuit']  
+            ('formal',): ['formal trousers','men formal', 'shirts for men','men'],
+            ('wedding',): ['kurta', 'ethnic'],
+            ('diwali',): ['ethnic', 'kurta'],
+            ('birthday',): ['jeans', 'shirts']  ,
+            ('beach vacation',): ['men','beach', 'swim']
         },
         'others': {
-            ('business',): ['formal', 'blazer'],
+            ('formal',): ['trousers','formal', 'blazer'],
             ('wedding',): ['saree', 'dress', 'suit'],
-            ('casual',): ['casual'],
-            ('birthday',): ['dress', 'jumpsuit']
+            ('diwali',): ['ethnic', 'kurta'],
+            ('birthday',): ['dress', 'jumpsuit'],
+            ('beach vacation',): ['men','beach', 'swim']
         }
     }
 
