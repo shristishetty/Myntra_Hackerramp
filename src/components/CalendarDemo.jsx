@@ -154,7 +154,7 @@ const CalendarDemo = () => {
                           <FormControl>
                             <button
                               type="button"
-                              className="bg-inherit outline-none text-sm "
+                              className="bg-inherit outline-none text-sm"
                             >
                               {selectedDate ? format(selectedDate, "PPP") : "Pick a date"}
                             </button>
