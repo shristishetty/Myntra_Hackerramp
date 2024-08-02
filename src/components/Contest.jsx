@@ -78,7 +78,7 @@ const Contest = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        <a href="http://127.0.0.1:5500/src/components/RampWalk/index.html" target="_blank" rel="noopener noreferrer">
+        <a href="http://127.0.0.1:5501/Myntra_hackerramp/src/components/RampWalk/index.html" target="_blank" rel="noopener noreferrer">
           <Button  style={{ margin: '10px', padding: '10px' }}>
             Done
           </Button>

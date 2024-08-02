@@ -72,8 +72,8 @@ function setupScene(gltf) {
 
     // Load avatar
     const avatar = gltf.scene;
-    const scaleFactor = 1.5; // Adjust this factor as needed
-  avatar.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    
+  avatar.scale.set(3, 2, 1.5);
     avatar.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;

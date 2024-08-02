@@ -1,6 +1,7 @@
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { Card, CardContent } from "./ui/card";
+import { FaRegHeart } from 'react-icons/fa'; 
 
 const initialImageUrls = [
   "https://petermanningnyc.com/cdn/shop/articles/image8_975x.png?v=1655834607",
@@ -85,20 +86,12 @@ export function Men() {
                   style={{height: '300px', objectFit: 'cover'}}
                 />
               </div>
-              <div className="flex justify-between items-center mt-4">
-                <a
-                  href="#"
-                  target="__blank"
-                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                >
-                  Buy now →
-                </a>
-                <button
-                  className="px-4 py-2 rounded-xl bg-primary dark:bg-white dark:text-black text-white text-xs font-bold"
-                >
-                  Wishlist
-                </button>
-              </div>
+              <div className="flex flex-col items-center mt-4">
+              <div className="flex mt-2 gap-8">
+                      <button className="buy-button hover:bg-pink-500 transition-colors">Buy Now</button>
+                      <FaRegHeart className="like-button hover:text-pink-500 transition-colors" />
+                      </div>
+                      </div>
             </CardContent>
           </Card>
         ))}
