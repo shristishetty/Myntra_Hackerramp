@@ -3,7 +3,7 @@ import CreateAvatar from './Avatar/CreateAvatar';
 import { EmojiSliderDemo } from './EmojiSliderDemo';
 import Voting from './voting/Voting';
 import Winners from './winners/Winners';
-import CreateUserComponent from './Avatar/CreateUserComponent';
+import { Button } from './ui/button';
 
 const Contest = () => {
   const [showAvatarCreator, setShowAvatarCreator] = useState(false);
@@ -72,10 +72,25 @@ const Contest = () => {
       ) : (
         <div style={{ width: '100%', height: '80vh' }}>
           <CreateAvatar />
+
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <a href="http://127.0.0.1:5500/src/components/RampWalk/index.html" target="_blank" rel="noopener noreferrer">
+          <Button  style={{ margin: '10px', padding: '10px' }}>
+            Done
+          </Button>
+        </a>
+      </div>
+
           <Voting />
           <Winners />
         </div>
       )}
+
+     
 
       {/* Floating video */}
       <div
