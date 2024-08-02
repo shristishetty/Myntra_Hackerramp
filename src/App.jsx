@@ -41,6 +41,7 @@ const App = () => {
           <Route path="/women" element={<Women />} />
           <Route path="/calendar" element={<CalendarDemo />} />
           <Route path="/contest" element={<Contest />} />
+
           {/* <Route path="/contest" element={
             // <Suspense fallback={<div>Loading...</div>}>
             //   <Contest />

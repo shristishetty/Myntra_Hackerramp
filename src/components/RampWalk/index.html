@@ -30,9 +30,87 @@
       <div id='avatar-container'>
         <div id='avatar-loading'></div>
       </div>
-      
+    </section>
+    <section id="reactions">
+      <div id="emoji-container">
+        <span class="emoji" data-reaction="👍">👍</span>
+        <span class="emoji" data-reaction="❤️">❤️</span>
+        <span class="emoji" data-reaction="😂">😂</span>
+        <span class="emoji" data-reaction="😮">😮</span>
+        <span class="emoji" data-reaction="😢">😢</span>
+        <span class="emoji" data-reaction="😡">😡</span>
+      </div>
     </section>
   </div>
+
+  <audio id="background-audio" src="../assets/RampAudio.mp3" type="audio/mpeg" autoplay></audio>
+
+  <script>
+    window.addEventListener('load', function() {
+      var audio = document.getElementById('background-audio');
+      audio.play();
+    });
+
+    document.querySelectorAll('.emoji').forEach(emoji => {
+      emoji.addEventListener('click', function() {
+        const reaction = this.getAttribute('data-reaction');
+        const selectedEmoji = this.cloneNode(true);
+        selectedEmoji.classList.add('floating-emoji');
+        document.body.appendChild(selectedEmoji);
+
+        setTimeout(() => {
+          selectedEmoji.remove();
+        }, 2000);
+      });
+    });
+  </script>
+
+  <style>
+    /* Add some basic styling */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    
+    #reactions {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      text-align: center;
+    }
+    
+    #emoji-container {
+      display: flex;
+      gap: 10px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    
+    .floating-emoji {
+      position: fixed;
+      font-size: 3rem;
+      animation: floatToCenter 2s forwards;
+      z-index: 1000;
+    }
+
+    @keyframes floatToCenter {
+      from {
+        bottom: 20px;
+        right: 20px;
+        opacity: 1;
+      }
+      to {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+    }
+  </style>
 </body>
 
 </html>
